@@ -400,7 +400,7 @@ public class Storyboard extends JFrame{
 						JButton source = (JButton) arg0.getSource();
 						for (int i=1;i<=5;i++){
 							if(buttons[i]==source){
-								//duplicate(i);
+								duplicate(i);
 							}
 						}	
 					}
@@ -544,47 +544,14 @@ public class Storyboard extends JFrame{
 	 * @param i
 	 * 			Index of frame to duplicate
 	 */
-	/*public void duplicate(int i) {
-		if(images[i]!=null){
-			System.out.println("Image there");
-			ImagePanel imgDuplicate = images[i].duplicate();
-			imgDuplicate.setBounds(0,0,IMGX,IMGY);
-    		panel.add(imgDuplicate,2,0);
-			
-			imgDuplicate.setLocation(getPicturePointofSection(i+1));
-			movingStateMachine.attachTo(imgDuplicate);
-			JTextField capDuplicate = new JTextField(captures[i].getText());
-			capDuplicate.setBounds(0,0,IMGX,30);
-			capDuplicate.setLocation(getCapturePointofSection(i+1));
-			capDuplicate.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-			capDuplicate.addFocusListener(new FocusListener(){
-
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					JTextField field = (JTextField) arg0.getSource();
-					field.selectAll();
-				}
-
-				@Override
-				public void focusLost(FocusEvent arg0) {}
-				
-			});
-
-			panel.add(capDuplicate,2,0);
-			if(images[i+1]!=null){
-				panel.remove(images[i+1]);
-				panel.remove(captures[i+1]);
-				images[i+1] =null;
-				captures[i+1]=null;
-				panel.repaint();
-			}
-			images[i+1] = imgDuplicate;
-			captures[i+1]=capDuplicate;
-			resetBorders();
-			updateDuplicateButtons();
-			panel.repaint();
-		}	
-	}*/
+	public void duplicate(int i) {
+		System.out.println("dupli");
+		frames[i+1].removeAll();
+		for(int j=0; j<frames[i].getComponentCount();j++){
+			System.out.println("Comp"+j);
+			frames[i+1].add(frames[i].getComponent(j));
+		}
+	}
 	
 	
 	
@@ -868,7 +835,8 @@ public class Storyboard extends JFrame{
 		CImage img = new CImage(filename, new Point(0,0));
 		double scale = IMGX/img.getWidth();
 		System.out.println("Scale: "+scale);
-		//img.scaleTo(scale);
+		img.scaleTo(scale);
+		img.setReferencePoint(0,0);
 		frames[section].addShape(img);
 		//captures[section] = new JTextField("Capture...");
 		//captures[section].setFont(new Font("Comic Sans MS", Font.BOLD, 14));
