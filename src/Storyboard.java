@@ -298,7 +298,10 @@ public class Storyboard extends JFrame{
 		leftBar.setBackground(Color.CYAN);
 		leftBar.setPreferredSize(new Dimension(LEFTX, WINY));
 		leftBar.add(ftPanel, BorderLayout.NORTH);	
+		
+		//TODO: remove this
 		filename ="/Users/hannaschneider/Pictures/1.jpg";
+		
 		imagePanel = new ImagePanel(filename);
 		imagePanel.setPreferredSize(new Dimension(IMGX,IMGY));
 		leftBar.add(imagePanel, BorderLayout.SOUTH);
@@ -340,6 +343,8 @@ public class Storyboard extends JFrame{
 		setVisible(true) ;
 		panel.requestFocus();
 		
+		//TODO: why there is no 0 here?
+		//PUT 6 as a global variable
 		for (int i=1;i<=6;i++){
 			frames[i] = new Canvas();
 			frames[i].newText(50, 250, "Hello world", new Font("verdana", Font.PLAIN, 12));
@@ -393,6 +398,8 @@ public class Storyboard extends JFrame{
 					}
 					
 				});
+				
+				//TODO: State machine for buttons
 				buttons[i].addActionListener(new ActionListener(){
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
@@ -579,6 +586,8 @@ public class Storyboard extends JFrame{
 	 * @return the number of the section
 	 */
 	public int whichSection(Point2D p){
+		
+		//TODO: why don't you loop in your array asking if the point is inside?
 		double x =p.getX();
 		double y =p.getY();
 		//first row
